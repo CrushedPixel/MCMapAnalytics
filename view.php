@@ -1,9 +1,9 @@
 <?php
+REQUIRE_ONCE "database_connection.php";
+REQUIRE_ONCE "get_stats.php";
 
 function curPageURL() {
-	$pageURL = 'http';
-	if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
-	$pageURL .= "://";
+	$pageURL = 'http://';
 	if ($_SERVER["SERVER_PORT"] != "80") {
 		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
 	} else {
@@ -21,7 +21,7 @@ if(isset($_GET["id"])) {
 }
 
 if(isset($id)) {
-	$data = json_decode(file_get_contents("http://crushedpixel.eu/analytics/get_stats.php?id=".$id), true);
+	$data = get_stats($id);
 	if(array_key_exists("error", $data)) {
 		$success = false;
 	} else {
@@ -88,7 +88,13 @@ if(isset($id)) {
 			<div class="page-header">
 				<div class="jumbotron">
 					<h1>MCMapAnalytics</h1>
-					<p>Statistics Overview</p>
+					<?php
+						if($success) {
+							echo '<p>Statistics Overview</p>';
+						} else {
+							echo '<p><font color="#8A0808">This Project does not exist.</font></p>';
+						}
+					?>
 					<form method="post" action="/analytics/view.php" id="resolver">
 						<?php
 						if($success) {
@@ -118,15 +124,8 @@ if(isset($id)) {
 		</div>
 	</div>
 	<?php
-	if(!$success) {
-		echo '
-			<div class="row" >
-				<div class="col-lg-8 col-sm-offset-2" >
-					<aid ="warning"></a>
-					<h2>This Project does not exist.</h2 >
-				</div>
-			</div>
-							';
+	if($success) {
+		//TODO: Add statistics
 	}
 	?>
 </div>
