@@ -86,8 +86,14 @@ if(!$success) {
 							<label class="control-label">Copy Command</label>
 							<div class="input-group col-xs-6">
 								<?php
-								echo '<input class="form-control" id="focusedInput" type="text" value="'.$data["command"].'" readonly="readonly" style="width:600px;">';
+								echo '<input class="form-control copyme" id="focusedInput" type="text" value="'.$data["command"].'" readonly="readonly" style="width:600px;">';
 								?>
+							<span class="input-group-btn">
+								<!--<button class="btn btn-default copyable" type="button" data-clipboard-text="">Copy</button>-->
+								<?php
+								echo '<button class="btn btn-default copyable" type="button" data-clipboard-text="'.$data["command"].'">Copy</button>';
+								?>
+							</span>
 							</div>
 							<br />
 							<label class="control-label">Copy This URL</label>
@@ -207,6 +213,10 @@ if(!$success) {
 </ul>
 </body>
 </html>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
 <script src="/analytics/static/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">$(document).ready(function(){var n=$(".url-link");n.val(window.location.href)});</script>
+<script type="text/javascript">
+	var client = new ZeroClipboard( $(".copyable") );
+</script>
 <script src="/analytics/static/bootstrap.min.js"></script> <!--Just in case-->
