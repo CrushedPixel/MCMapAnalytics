@@ -134,7 +134,7 @@ if(isset($id)) {
 				</div>
 				</div>';
 
-
+			//The Country table
 			echo '<div class="row">
 			  <table class="table table-striped table-hover">
 			  <thead>
@@ -156,10 +156,73 @@ if(isset($id)) {
 			      <td>' . $pair["percentage"] . '%</td>
 			      </tr>';
 				$i++;
+				if($i > 15) {
+					break;
+				}
 			}
 
 			echo '</tbody>
 			  </table>';
+
+
+			//The Java Version table
+			echo '<table class="table table-striped table-hover">
+			  <thead>
+			  	<tr>
+					<th>#</th>
+					<th>Java Version</th>
+					<th>Player Count</th>
+					<th>Relative Amount</th>
+			    </tr>
+			  </thead>
+			  <tbody>';
+
+			$i = 1;
+			foreach ($data["java_versions"] as $pair) {
+				echo '<tr>
+ 				  <td>' . $i . '</td>
+				  <td>' . $pair["version"] . '</td>
+			      <td>' . $pair["count"] . '</td>
+			      <td>' . $pair["percentage"] . '%</td>
+			      </tr>';
+				$i++;
+				if($i > 15) {
+					break;
+				}
+			}
+
+			echo '</tbody>
+			  </table>';
+
+			//The Providers Table
+			echo '<table class="table table-striped table-hover">
+			  <thead>
+			  	<tr>
+					<th>#</th>
+					<th>Provider</th>
+					<th>Player Count</th>
+					<th>Relative Amount</th>
+			    </tr>
+			  </thead>
+			  <tbody>';
+
+			$i = 1;
+			foreach ($data["providers"] as $pair) {
+				echo '<tr>
+ 				  <td>' . $i . '</td>
+				  <td>' . $pair["provider"] . '</td>
+			      <td>' . $pair["count"] . '</td>
+			      <td>' . $pair["percentage"] . '%</td>
+			      </tr>';
+				$i++;
+				if($i > 15) {
+					break;
+				}
+			}
+
+			echo '</tbody>
+			  </table>';
+
 		} else {
 			echo '<div class="row">
 				<div class="col-lg-8 col-sm-offset-2">
