@@ -38,7 +38,13 @@
 		<div class="navbar-collapse collapse" id="navbar-main">
 			<ul class="nav navbar-nav">
 				<li>
-					<a href="https://github.com/CrushedPixel/MCMapAnalytics">Source Code on GitHub</a>
+					<a href="https://github.com/CrushedPixel/MCMapAnalytics" target="_blank">Source Code on GitHub</a>
+				</li>
+			</ul>
+
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="/analytics/stats">View General Statistics</a>
 				</li>
 			</ul>
 

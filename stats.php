@@ -1,33 +1,5 @@
 <?php
 REQUIRE_ONCE "database_connection.php";
-REQUIRE_ONCE "get_stats.php";
-
-function curPageURL() {
-	$pageURL = 'http://';
-	if ($_SERVER["SERVER_PORT"] != "80") {
-		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-	} else {
-		$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-	}
-	return $pageURL;
-}
-
-$success = false;
-
-if(isset($_GET["id"])) {
-	$id = $_GET["id"];
-} elseif(isset($_POST["id"])) {
-	$id = $_POST["id"];
-}
-
-if(isset($id)) {
-	$data = get_stats($id);
-	if(array_key_exists("error", $data)) {
-		$success = false;
-	} else {
-		$success = true;
-	}
-}
 ?>
 
 <!DOCTYPE html>
@@ -95,51 +67,47 @@ if(isset($id)) {
 			<div class="page-header">
 				<div class="jumbotron">
 					<h1>MCMapAnalytics</h1>
-					<?php
-					if($success) {
-						echo '<p>Statistics Overview</p>';
-					} else {
-						echo '<p><font color="#8A0808">This Project does not exist.</font></p>';
-					}
-					?>
-					<form method="post" action="/analytics/view.php" id="resolver">
-						<?php
-						if($success) {
-							echo '<div class="form-group">';
-							echo '<label class="control-label">Copy Command</label>
-										  <div class="input-group col-xs-6">';
-							echo '<input class="form-control copyme" id="focusedInput" type="text" value="' . $data["command"] . '" readonly="readonly" style="width:600px;">';
-							echo '<span class="input-group-btn">';
-							echo '<button class="btn btn-default copyable" type="button" data-clipboard-text="' . $data["command"] . '">Copy</button>';
-							echo '</span>';
-							echo '</div>';
-
-							echo '<br/>
-								<label class="control-label">Copy This URL</label>
-								<div class="input-group col-xs-6">
-								<input class="form-control copyme" id="focusedInput" type="text" value="'. curPageURL() .'" readonly="readonly" style="width:600px;">';
-							echo '<span class="input-group-btn">';
-							echo '<button class="btn btn-default copyable" type="button" data-clipboard-text="' . curPageURL() . '">Copy</button>';
-							echo '</span>';
-							echo '</div>';
-						}
-						?>
-
+					<p>General Statistics</p>
 				</div>
-				</form>
 			</div>
 		</div>
 	</div>
-	<?php
-	if($success) {
-		if($data["total"] > 0) {
+	<div class="row">
+		<div class="col-lg-8 col-sm-offset-2">
+			<?php
+			global $con;
 
-			echo '<div class="row">
-				<div class="col-lg-8 col-sm-offset-2">
-				<a id="count"></a>
-				<p>Total Players: '. $data["total"] . '</p>
-				</div>
-				</div>';
+			$sql = 'SELECT COUNT(*) as count FROM projects';
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+
+			$projects = 0;
+			while($row = $stmt->fetch()) {
+				$projects = $row["count"];
+				break;
+			}
+
+			$sql = 'SELECT COUNT(*) as count FROM tracked';
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
+
+			$tracked = 0;
+			while($row = $stmt->fetch()) {
+				$tracked = $row["count"];
+				break;
+			}
+
+			$average = round($tracked/$projects, 2);
+
+			echo '<h2>Total Projects: <b>'. $projects .'</b></h2>';
+			echo '<h2>Total Players tracked: <b>'. $tracked .'</b></h2>';
+			echo '<h2>Average Players per Project: <b>'. $average .'</b></h2>';
+
+			echo '<br>';
+
+			$sql = "SELECT country,COUNT(*) as count FROM tracked GROUP BY country ORDER BY count DESC, country ASC";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
 
 			//The Country table
 			echo '<div class="row">
@@ -155,12 +123,12 @@ if(isset($id)) {
 			  <tbody>';
 
 			$i = 1;
-			foreach ($data["countries"] as $pair) {
+			while($row = $stmt->fetch()) {
 				echo '<tr>
  				  <td>' . $i . '</td>
-				  <td><img id="flag" width="30px" height="20px" src="http://www.geonames.org/flags/x/'. strtolower($pair["country"]) . '.gif"/> ' . $pair["country"] . '</td>
-			      <td>' . $pair["count"] . '</td>
-			      <td>' . $pair["percentage"] . '%</td>
+				  <td><img id="flag" width="30px" height="20px" src="http://www.geonames.org/flags/x/'. strtolower($row["country"]) . '.gif"/> ' . $row["country"] . '</td>
+			      <td>' . $row["count"] . '</td>
+			      <td>' . (int)(100*($row["count"]/$tracked)) . '%</td>
 			      </tr>';
 				$i++;
 				if($i > 15) {
@@ -171,6 +139,9 @@ if(isset($id)) {
 			echo '</tbody>
 			  </table>';
 
+			$sql = "SELECT java,COUNT(*) as count FROM tracked GROUP BY java ORDER BY count DESC";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
 
 			//The Java Version table
 			echo '<table class="table table-striped table-hover">
@@ -185,12 +156,12 @@ if(isset($id)) {
 			  <tbody>';
 
 			$i = 1;
-			foreach ($data["java_versions"] as $pair) {
+			while($row = $stmt->fetch()) {
 				echo '<tr>
  				  <td>' . $i . '</td>
-				  <td>' . $pair["version"] . '</td>
-			      <td>' . $pair["count"] . '</td>
-			      <td>' . $pair["percentage"] . '%</td>
+				  <td>' . $row["java"] . '</td>
+			      <td>' . $row["count"] . '</td>
+			      <td>' . (int)(100*($row["count"]/$tracked)) . '%</td>
 			      </tr>';
 				$i++;
 				if($i > 15) {
@@ -200,6 +171,11 @@ if(isset($id)) {
 
 			echo '</tbody>
 			  </table>';
+
+
+			$sql = "SELECT org,COUNT(*) as count FROM tracked GROUP BY org ORDER BY count DESC";
+			$stmt = $con->prepare($sql);
+			$stmt->execute();
 
 			//The Providers Table
 			echo '<table class="table table-striped table-hover">
@@ -214,12 +190,12 @@ if(isset($id)) {
 			  <tbody>';
 
 			$i = 1;
-			foreach ($data["providers"] as $pair) {
+			while($row = $stmt->fetch()) {
 				echo '<tr>
  				  <td>' . $i . '</td>
-				  <td>' . $pair["provider"] . '</td>
-			      <td>' . $pair["count"] . '</td>
-			      <td>' . $pair["percentage"] . '%</td>
+				  <td>' . $row["org"] . '</td>
+			      <td>' . $row["count"] . '</td>
+			      <td>' . (int)(100*($row["count"]/$tracked)) . '%</td>
 			      </tr>';
 				$i++;
 				if($i > 15) {
@@ -229,19 +205,9 @@ if(isset($id)) {
 
 			echo '</tbody>
 			  </table>';
-
-		} else {
-			echo '<div class="row">
-				<div class="col-lg-8 col-sm-offset-2">
-				<a id="count"></a>
-				<p><font color="#8A0808">No Statistics tracked for this Project.</font></p>
-				</div>
-				</div>';
-		}
-		//TODO: Add statistics
-	}
-	?>
-</div>
+			?>
+		</div>
+	</div>
 </div>
 <hr/>
 
