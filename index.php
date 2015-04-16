@@ -82,52 +82,52 @@
 		<div class="row">
 			<div class="col-lg-8 col-sm-offset-2">
 				<a id="intro"></a>
-				<h2> Introduction </h2>
-				<p> Blah </p>
-
-				<p> More stuff if you want.</p>
+				<h2>Introduction</h2>
+				<p>MCMapAnalytics is a tool for Mapmakers that allows them to collect statistics about the Minecraft Players using their maps.</p>
+				<p>It's easy to use - simply place a Player Head in your creation, and every individual player loading this Head gets tracked in your statistics.</p>
 			</div>
 		</div>
-		<div class="row" id="main-row">
+
+		<div class="row">
 			<div class="col-lg-8 col-sm-offset-2">
-				<a id="regular"></a>
-				<h2> Sub 1 </h2>
-
-				<p> Words </p>
-
+				<a id="intro"></a>
+				<h2>Transparency</h2>
+				<p>All of the statistics are publicly accessible on this website, so everyone can see what we're tracking.</p>
+				<p>Additionally, the source code to MCMapAnalytics is <a href="https://github.com/CrushedPixel/MCMapAnalytics">published on GitHub</a>,
+					proving this website trustworthy and secure.</p>
 			</div>
 		</div>
-		<div class="row" id="main-row">
+
+		<div class="row">
 			<div class="col-lg-8 col-sm-offset-2">
-				<a id="regular"></a>
-				<h2> Sub 2 </h2>
-
-				<p> Words</p>
-
+				<a id="intro"></a>
+				<h2>How it works</h2>
+				<p>The Custom Player Head in your map or contraption that loads it's skin file from the MCMapAnalytics servers.
+					Once a Minecraft client downloads the skin, the player's Java Version, Country and Provider are stored <b>anonymously</b>.</p>
 			</div>
 		</div>
-		<div class="row" id="main-row">
+
+		<div class="row">
 			<div class="col-lg-8 col-sm-offset-2">
-				<a id="regular"></a>
-				<h2> Sub 3 </h2>
+				<h2>Support the developers</h2>
+				<p>The code behind MCMapAnalytics was created by CrushedPixel, the design was made by TheDestruc7i0n.</p>
+				<p>CrushedPixel is currently raising funds for an awesome Minecraft Mod on Kickstarter,
+						please back the project to support him!</p>
+				<center><iframe width="100%" height="455px" src="https://www.kickstarter.com/projects/crushedpixel/minecraft-replay-mod/widget/video.html"
+								frameborder="2" scrolling="no"></iframe></center>
 
-				<p> Words</p>
+				<br>
+				<p>Alternatively, you can donate to us via PayPal:</p>
+				<p><a href="http://bit.ly/DonorCP">CrushedPixel on PayPal</a></p>
+				<p><a href="http://bit.ly/DonorTheDestruc7i0n">TheDestruc7i0n on PayPal</a></p>
 			</div>
 		</div>
-		<div class="row" id="main-row">
-			<div class="col-lg-8 col-sm-offset-2">
-				<a id="regular"></a>
-				<h2> Sub 4 </h2>
 
-				<p> Words</p>
-
-			</div>
-		</div>
 	</div>
 </div>
 <hr />
 <ul class="breadcrumb">
-	<center><li class="active">&copy; <a href="http://crushedpixel.eu" target="_blank">CrushedPixel</a> &amp; <a href="http://thedestruc7i0n.ca" target="_blank">TheDestruc7i0n</a></li></center>
+	<center><li class="active">&copy; 2015 <a href="http://crushedpixel.eu" target="_blank">CrushedPixel</a> &amp; <a href="http://thedestruc7i0n.ca" target="_blank">TheDestruc7i0n</a></li></center>
 </ul>
 </body>
 </html>
