@@ -7,31 +7,11 @@ REQUIRE_ONCE "database_connection.php";
 <head>
 	<meta name="description" content="MCMapAnalytics - Analytics for your Minecraft Map">
 	<title>MCMapAnalytics - General Statistics</title>
-	<!--<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="">-->
 	<link rel="stylesheet" href="/analytics/static/bootstrap.min.css">
-	<link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+	<link href="//fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="/analytics/favicon.ico" />
 </head>
-<style>
-	p
-	{
-		font-size: 20px;
-	}
-	code /*If you want code*/
-	{
-		font-size: 130%;
-	}
-	code#inline
-	{
-		font-size: 100%;
-	}
-	.navbar
-	{
-		border: 0px !important;
-		border-radius: 0px !important;
-
-	}
-</style>
+<style>p{font-size:20px}.navbar{border:0!important;border-radius:0!important}</style>
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top">
@@ -218,7 +198,5 @@ REQUIRE_ONCE "database_connection.php";
 </html>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
 <script src="/analytics/static/jquery-1.11.1.min.js"></script>
-<script type="text/javascript">
-	var client = new ZeroClipboard( $(".copyable") );
-</script>
+<script type="text/javascript">var client = new ZeroClipboard( $(".copyable") );</script>
 <script src="/analytics/static/bootstrap.min.js"></script> <!--Just in case-->
