@@ -6,7 +6,7 @@ REQUIRE_ONCE "database_connection.php";
 <html lang="en">
 <head>
 	<meta name="description" content="MCMapAnalytics - Analytics for your Minecraft Map">
-	<title> MCMapAnalytics </title>
+	<title>MCMapAnalytics - General Statistics</title>
 	<!--<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="">-->
 	<link rel="stylesheet" href="/analytics/static/bootstrap.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
