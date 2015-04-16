@@ -6,6 +6,7 @@
 	<!--<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="">-->
 	<link rel="stylesheet" href="/analytics/static/bootstrap.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/analytics/favicon.ico" />
 </head>
 <style>
 	p
@@ -84,7 +85,8 @@
 				<a id="intro"></a>
 				<h2>Introduction</h2>
 				<p>MCMapAnalytics is a tool for Mapmakers that allows them to collect statistics about the Minecraft Players using their maps.</p>
-				<p>It's easy to use - simply place a Player Head in your creation, and every individual player loading this Head gets tracked in your statistics.</p>
+				<p>It's easy to use - simply place a Player Head in your creation, and every individual player loading this Head gets tracked in your statistics.<br>
+					Note that every player will only get counted once.</p>
 			</div>
 		</div>
 
@@ -112,7 +114,7 @@
 				<h2>Support the developers</h2>
 				<p>The code behind MCMapAnalytics was created by CrushedPixel, the design was made by TheDestruc7i0n.</p>
 				<p>CrushedPixel is currently raising funds for an awesome Minecraft Mod on Kickstarter,
-						please back the project to support him!</p>
+					please back the project to support him!</p>
 				<center><iframe width="100%" height="455px" src="https://www.kickstarter.com/projects/crushedpixel/minecraft-replay-mod/widget/video.html"
 								frameborder="2" scrolling="no"></iframe></center>
 

@@ -38,6 +38,7 @@ if(isset($id)) {
 	<!--<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="">-->
 	<link rel="stylesheet" href="/analytics/static/bootstrap.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/analytics/favicon.ico" />
 </head>
 <style>
 	p
