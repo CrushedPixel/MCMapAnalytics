@@ -31,6 +31,11 @@ if(isset($_GET["player"])) {
     $player = $_POST["player"];
 }
 
+if($player == null or strlen($player) == 0) {
+    header("Location: http://crushedpixel.eu/analytics/index.php?empty=true");
+    exit;
+}
+
 global $con;
 
 $sql = 'INSERT INTO projects (player) VALUES(?)';
@@ -42,7 +47,7 @@ $stmt->execute();
 $id = $con->lastInsertId();
 
 $command = "/give @p minecraft:skull 1 3 {SkullOwner:{Id:".gen_uuid().",Properties:{textures:[{Value:"
-    .base64_encode('{textures:{SKIN:{url:"http://crushedpixel.eu/analytics/get_skull/'.$id.'"}}}')."}]}}}";
+    .base64_encode('{textures:{SKIN:{url:"http://crushedpixel.eu/analytics/get_skull/MCAnalytics_'.$id.'"}}}')."}]}}}";
 
 $sql = 'UPDATE projects SET command=? WHERE id=?';
 $stmt = $con->prepare($sql);

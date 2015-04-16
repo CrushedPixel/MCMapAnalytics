@@ -68,6 +68,14 @@
 							</div>
 						</div>
 					</form>
+					<?php
+					if(isset($_GET["empty"])) {
+						$empty = $_GET["empty"];
+						if($empty == true) {
+							echo '<p><font color="#8A0808">Username must not be empty! For the default skin, use "char".</font></p>';
+						}
+					}
+					?>
 				</div>
 			</div>
 		</div>

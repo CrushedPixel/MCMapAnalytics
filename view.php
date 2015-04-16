@@ -89,11 +89,11 @@ if(isset($id)) {
 				<div class="jumbotron">
 					<h1>MCMapAnalytics</h1>
 					<?php
-						if($success) {
-							echo '<p>Statistics Overview</p>';
-						} else {
-							echo '<p><font color="#8A0808">This Project does not exist.</font></p>';
-						}
+					if($success) {
+						echo '<p>Statistics Overview</p>';
+					} else {
+						echo '<p><font color="#8A0808">This Project does not exist.</font></p>';
+					}
 					?>
 					<form method="post" action="/analytics/view.php" id="resolver">
 						<?php
@@ -125,12 +125,56 @@ if(isset($id)) {
 	</div>
 	<?php
 	if($success) {
+		if($data["total"] > 0) {
+
+			echo '<div class="row">
+				<div class="col-lg-8 col-sm-offset-2">
+				<a id="count"></a>
+				<p>Total Players: '. $data["total"] . '</p>
+				</div>
+				</div>';
+
+
+			echo '<div class="row">
+			  <table class="table table-striped table-hover">
+			  <thead>
+			  	<tr>
+					<th>#</th>
+					<th>Country</th>
+					<th>Player Count</th>
+					<th>Relative Amount</th>
+			    </tr>
+			  </thead>
+			  <tbody>';
+
+			$i = 1;
+			foreach ($data["countries"] as $pair) {
+				echo '<tr>
+ 				  <td>' . $i . '</td>
+				  <td><img id="flag" width="30px" height="20px" src="http://www.geonames.org/flags/x/'. strtolower($pair["country"]) . '.gif"/> ' . $pair["country"] . '</td>
+			      <td>' . $pair["count"] . '</td>
+			      <td>' . $pair["percentage"] . '%</td>
+			      </tr>';
+				$i++;
+			}
+
+			echo '</tbody>
+			  </table>';
+		} else {
+			echo '<div class="row">
+				<div class="col-lg-8 col-sm-offset-2">
+				<a id="count"></a>
+				<p><font color="#8A0808">No Statistics tracked for this Project.</font></p>
+				</div>
+				</div>';
+		}
 		//TODO: Add statistics
 	}
 	?>
 </div>
 </div>
-<hr />
+<hr/>
+
 <ul class="breadcrumb">
 	<center><li class="active">&copy; <a href="http://crushedpixel.eu" target="_blank">CrushedPixel</a> &amp; <a href="http://thedestruc7i0n.ca" target="_blank">TheDestruc7i0n</a></li></center>
 </ul>

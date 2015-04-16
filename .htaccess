@@ -2,7 +2,7 @@ RewriteEngine On
 
 RewriteBase /analytics
 
-RewriteRule ^get_skull/(.*)$ get_skull.php?id=$1 [QSA]
+RewriteRule ^get_skull/MCAnalytics_(.*)$ get_skull.php?id=$1 [QSA]
 RewriteRule ^view/(.*)$ view.php?id=$1 [QSA]
 
 RewriteCond %{REQUEST_FILENAME} !-f
