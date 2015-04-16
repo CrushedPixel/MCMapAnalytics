@@ -139,10 +139,10 @@ if(isset($id)) {
 			  <table class="table table-striped table-hover">
 			  <thead>
 			  	<tr>
-					<th>#</th>
-					<th>Country</th>
-					<th>Player Count</th>
-					<th>Relative Amount</th>
+					<th width="10%">#</th>
+					<th width="30%">Country</th>
+					<th width="30%">Player Count</th>
+					<th width="30%">Relative Amount</th>
 			    </tr>
 			  </thead>
 			  <tbody>';
@@ -169,10 +169,10 @@ if(isset($id)) {
 			echo '<table class="table table-striped table-hover">
 			  <thead>
 			  	<tr>
-					<th>#</th>
-					<th>Java Version</th>
-					<th>Player Count</th>
-					<th>Relative Amount</th>
+					<th width="10%">#</th>
+					<th width="30%">Java Version</th>
+					<th width="30%">Player Count</th>
+					<th width="30%">Relative Amount</th>
 			    </tr>
 			  </thead>
 			  <tbody>';
@@ -198,10 +198,10 @@ if(isset($id)) {
 			echo '<table class="table table-striped table-hover">
 			  <thead>
 			  	<tr>
-					<th>#</th>
-					<th>Provider</th>
-					<th>Player Count</th>
-					<th>Relative Amount</th>
+					<th width="10%">#</th>
+					<th width="30%">Provider</th>
+					<th width="30%">Player Count</th>
+					<th width="30%">Relative Amount</th>
 			    </tr>
 			  </thead>
 			  <tbody>';
